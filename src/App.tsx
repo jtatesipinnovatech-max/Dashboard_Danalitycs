@@ -12,6 +12,7 @@ import { ExecutiveDashboard } from './components/ExecutiveDashboard';
 import { MetiIndicatorsView } from './components/MetiIndicatorsView';
 import { PortfolioView } from './components/PortfolioView';
 import { RisksComplianceView } from './components/RisksComplianceView';
+import { WorkflowSimulatorView } from './components/WorkflowSimulatorView';
 import { useGovernanceData } from './hooks/useGovernanceData';
 import { exportGovernancePdfReport } from './lib/exportPdfReport';
 import type { NavigationTab } from './types/governance';
@@ -25,6 +26,7 @@ const NAV_ITEMS: {
   { id: 'meti', label: 'Indicadores PETI' },
   { id: 'portfolio', label: 'Portafolio B001–B012' },
   { id: 'risks', label: 'Riesgos y Ley 1581' },
+  { id: 'ingestion', label: 'Flujo de Datos' },
 ];
 
 export default function App() {
@@ -44,6 +46,7 @@ export default function App() {
     updateMetiValue,
     updateInitiative,
     updateRiskStatus,
+    applyCioIngestionToDashboard,
     resetToSeed,
   } = useGovernanceData();
 
@@ -237,6 +240,12 @@ export default function App() {
             dataProtectionScore={assessment.data_protection_score}
             onUpdateRiskStatus={updateRiskStatus}
             onNavigate={handleSelectTab}
+          />
+        )}
+
+        {activeTab === 'ingestion' && (
+          <WorkflowSimulatorView
+            onApplyToDashboard={applyCioIngestionToDashboard}
           />
         )}
       </main>

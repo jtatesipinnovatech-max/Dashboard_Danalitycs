@@ -284,6 +284,91 @@ export function useGovernanceData() {
     flashSaved('Datos restaurados a línea base DAnalytics');
   }, [flashSaved]);
 
+  const applyCioIngestionToDashboard = useCallback(
+    (result: {
+      tipo: string;
+      records: Array<Record<string, unknown>>;
+    }) => {
+      const now = new Date().toISOString();
+
+      if (result.tipo === 'madurez_ceipa') {
+        const globalItem = result.records.find(
+          (r) => r.dimension === 'Madurez global'
+        );
+        if (globalItem && typeof globalItem.nivel === 'string') {
+          setState((prev) => ({
+            ...prev,
+            assessment: {
+              ...prev.assessment,
+              digital_maturity_ceipa: `${globalItem.nivel} - Actualizado CEIPA`,
+            },
+          }));
+          flashSaved('Madurez digital CEIPA sincronizada con el Dashboard');
+          return;
+        }
+      }
+
+      if (result.tipo === 'indicador') {
+        const first = result.records[0];
+        if (first && typeof first.valor === 'number') {
+          const val = Math.min(100, Math.max(0, Number(first.valor.toFixed(2))));
+          setState((prev) => ({
+            ...prev,
+            assessment: {
+              ...prev.assessment,
+              self_assessment_score: val,
+            },
+          }));
+          flashSaved(`Indicador "${String(first.indicador)}" aplicado al Dashboard`);
+          return;
+        }
+      }
+
+      if (result.tipo === 'iso38500') {
+        const codeMap: Record<string, IsoPrinciple['code']> = {
+          'ISO-01': 'RESP',
+          'ISO-02': 'ESTR',
+          'ISO-03': 'ADQ',
+          'ISO-04': 'DES',
+          'ISO-05': 'CONF',
+          'ISO-06': 'COMP',
+        };
+        setState((prev) => {
+          const nextPrinciples = prev.principles.map((p) => {
+            const match = result.records.find(
+              (r) => codeMap[String(r.principio_codigo ?? '')] === p.code
+            );
+            if (!match || typeof match.nivel !== 'number') return p;
+            const scaled = Math.min(5, Math.max(1, match.nivel + 1));
+            return {
+              ...p,
+              estimated_score: scaled,
+              evidence: String(match.evidencia ?? p.evidence),
+              updated_at: now,
+            };
+          });
+          const totalEstimated = nextPrinciples.reduce(
+            (sum, p) => sum + p.estimated_score,
+            0
+          );
+          const adjustedScore = Number(
+            ((totalEstimated / (nextPrinciples.length * 5)) * 100).toFixed(2)
+          );
+          return {
+            ...prev,
+            principles: nextPrinciples,
+            assessment: {
+              ...prev.assessment,
+              self_assessment_score: adjustedScore,
+            },
+          };
+        });
+        flashSaved('Evaluaciones ISO 38500 aplicadas al Dashboard');
+      }
+    },
+    [flashSaved]
+  );
+
   return {
     assessment: state.assessment,
     principles: state.principles,
@@ -300,6 +385,7 @@ export function useGovernanceData() {
       updates: { status?: InitiativeStatus; priority?: InitiativePriority }
     ) => updateInitiative(id, updates),
     updateRiskStatus,
+    applyCioIngestionToDashboard,
     resetToSeed,
   };
 }

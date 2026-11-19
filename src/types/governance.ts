@@ -20,7 +20,8 @@ export type NavigationTab =
   | 'edm'
   | 'meti'
   | 'portfolio'
-  | 'risks';
+  | 'risks'
+  | 'ingestion';
 
 export interface GovernanceAssessment {
   id: string;
