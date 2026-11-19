@@ -1,0 +1,6 @@
+{
+  "name": "DAnalytics · Gobierno TI ISO 38500",
+  "description": "Dashboard Estratégico Interactivo de Gobierno de TI basado en ISO/IEC 38500:2024 e ISO 37000 para DAnalytics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
