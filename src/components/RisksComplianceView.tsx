@@ -107,14 +107,14 @@ export function RisksComplianceView({
 
       {/* 4 Dominios de Monitorización */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#DE350B] bg-white p-5 shadow-xs dark:border-slate-800 dark:border-t-[#DE350B] dark:bg-slate-900">
+        <div className="rounded-lg border border-slate-200/90 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
               Privacidad · Ley 1581
             </span>
-            <Lock className="h-4 w-4 text-[#DE350B]" />
+            <Lock className="h-4 w-4 text-[#FA5C7C]" />
           </div>
-          <div className="mt-2.5 font-mono text-xl font-semibold text-[#DE350B] dark:text-red-400 tabular-nums">
+          <div className="mt-2.5 font-mono text-xl font-semibold text-[#FA5C7C] dark:text-red-400 tabular-nums">
             {dataProtectionScore}% cumplimiento
           </div>
           <p className="mt-1.5 text-xs text-slate-500 dark:text-slate-400">
@@ -122,12 +122,12 @@ export function RisksComplianceView({
           </p>
         </div>
 
-        <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#00C7E6] bg-white p-5 shadow-xs dark:border-slate-800 dark:border-t-[#00C7E6] dark:bg-slate-900">
+        <div className="rounded-lg border border-slate-200/90 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
               Ciberseguridad & Respaldo
             </span>
-            <ShieldCheck className="h-4 w-4 text-[#00C7E6]" />
+            <ShieldCheck className="h-4 w-4 text-[#2E93FA]" />
           </div>
           <div className="mt-2.5 font-mono text-xl font-semibold text-slate-900 dark:text-slate-50 tabular-nums">
             {meti04?.current_value ?? '—'}% cifrado
@@ -137,12 +137,12 @@ export function RisksComplianceView({
           </p>
         </div>
 
-        <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#5243AA] bg-white p-5 shadow-xs dark:border-slate-800 dark:border-t-[#5243AA] dark:bg-slate-900">
+        <div className="rounded-lg border border-slate-200/90 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
               Gobierno de IA en Nube Segura
             </span>
-            <Cpu className="h-4 w-4 text-[#5243AA]" />
+            <Cpu className="h-4 w-4 text-[#5F3DF5]" />
           </div>
           <div className="mt-2.5 font-mono text-xl font-semibold text-slate-900 dark:text-slate-50 tabular-nums">
             {meti01?.current_value ?? '—'}% proyectos
@@ -152,12 +152,12 @@ export function RisksComplianceView({
           </p>
         </div>
 
-        <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#36B37E] bg-white p-5 shadow-xs dark:border-slate-800 dark:border-t-[#36B37E] dark:bg-slate-900">
+        <div className="rounded-lg border border-slate-200/90 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
               FinOps Cloud & Costos
             </span>
-            <CloudCog className="h-4 w-4 text-[#36B37E]" />
+            <CloudCog className="h-4 w-4 text-[#44B7B2]" />
           </div>
           <div className="mt-2.5 font-mono text-xl font-semibold text-slate-900 dark:text-slate-50 tabular-nums">
             {meti08?.current_value ?? '—'}% ahorro

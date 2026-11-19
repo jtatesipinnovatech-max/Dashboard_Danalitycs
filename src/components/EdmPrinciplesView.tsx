@@ -121,7 +121,7 @@ export function EdmPrinciplesView({
       </div>
 
       {/* Ciclo EDM: Pestañas Evaluar / Dirigir / Monitorear */}
-      <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#0052CC] bg-white p-6 shadow-xs dark:border-slate-800 dark:border-t-[#0052CC] dark:bg-slate-900">
+      <div className="rounded-lg border border-slate-200/90 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-base font-semibold text-slate-900 dark:text-slate-50">
@@ -139,9 +139,9 @@ export function EdmPrinciplesView({
                   key={item.stage}
                   type="button"
                   onClick={() => setActiveStage(item.stage)}
-                  className={`rounded px-4 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+                  className={`rounded-md px-4 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
                     active
-                      ? 'bg-[#0052CC] text-white shadow-sm'
+                      ? 'bg-[#5F3DF5] text-white shadow-xs'
                       : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
                   }`}
                 >
@@ -194,7 +194,7 @@ export function EdmPrinciplesView({
       </div>
 
       {/* Tabla Interactiva de los 6 Principios ISO 38500 */}
-      <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#FFAB00] bg-white shadow-xs dark:border-slate-800 dark:border-t-[#FFAB00] dark:bg-slate-900">
+      <div className="rounded-lg border border-slate-200/90 bg-white dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-2 border-b border-slate-200 px-6 py-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <h2 className="text-base font-semibold text-slate-900 dark:text-slate-50">

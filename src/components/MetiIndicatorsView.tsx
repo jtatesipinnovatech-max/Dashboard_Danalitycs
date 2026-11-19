@@ -177,7 +177,7 @@ export function MetiIndicatorsView({
       </div>
 
       {/* Gráfico Comparativo Bar / Line */}
-      <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#36B37E] bg-white p-6 shadow-xs dark:border-slate-800 dark:border-t-[#36B37E] dark:bg-slate-900">
+      <div className="rounded-lg border border-slate-200/90 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
             <h2 className="text-base font-semibold text-slate-900 dark:text-slate-50">
@@ -216,9 +216,9 @@ export function MetiIndicatorsView({
               <button
                 type="button"
                 onClick={() => setChartMode('bar')}
-                className={`inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+                className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
                   chartMode === 'bar'
-                    ? 'bg-[#0052CC] text-white'
+                    ? 'bg-[#2E93FA] text-white'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
                 }`}
               >
@@ -228,9 +228,9 @@ export function MetiIndicatorsView({
               <button
                 type="button"
                 onClick={() => setChartMode('line')}
-                className={`inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+                className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
                   chartMode === 'line'
-                    ? 'bg-[#0052CC] text-white'
+                    ? 'bg-[#2E93FA] text-white'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
                 }`}
               >
@@ -345,7 +345,7 @@ export function MetiIndicatorsView({
       </div>
 
       {/* Filtros + Tabla METI */}
-      <div className="rounded-md border border-slate-200 border-t-[3px] border-t-[#0052CC] bg-white shadow-xs dark:border-slate-800 dark:border-t-[#0052CC] dark:bg-slate-900">
+      <div className="rounded-lg border border-slate-200/90 bg-white dark:border-slate-800 dark:bg-slate-900">
         <div className="flex flex-col gap-3 border-b border-slate-200 p-5 dark:border-slate-800 lg:flex-row lg:items-center lg:justify-between">
           <div className="relative flex-1 max-w-sm">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />

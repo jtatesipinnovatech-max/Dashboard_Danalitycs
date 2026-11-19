@@ -125,10 +125,30 @@ export function calculateIso37000Outcomes(
   });
 }
 
-export function formatCurrencyUSD(amount: number): string {
+export const USD_TO_COP_RATE = 4200;
+
+export function convertUsdToCop(amountUsd: number): number {
+  return Math.round(amountUsd * USD_TO_COP_RATE);
+}
+
+export function formatCurrencyCOP(amountUsd: number): string {
+  const amountCop = convertUsdToCop(amountUsd);
   return new Intl.NumberFormat('es-CO', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'COP',
     maximumFractionDigits: 0,
-  }).format(amount);
+  }).format(amountCop);
 }
+
+export function formatCurrencyCOPCompact(amountUsd: number): string {
+  const amountCop = convertUsdToCop(amountUsd);
+  if (amountCop >= 1_000_000) {
+    const millions = amountCop / 1_000_000;
+    return `$ ${millions.toLocaleString('es-CO', {
+      minimumFractionDigits: 1,
+      maximumFractionDigits: 1,
+    })}M COP`;
+  }
+  return formatCurrencyCOP(amountUsd);
+}
+

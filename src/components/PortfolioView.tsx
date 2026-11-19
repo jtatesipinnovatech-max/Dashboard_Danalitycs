@@ -4,7 +4,7 @@ import {
   Kanban,
   Table as TableIcon,
 } from 'lucide-react';
-import { formatCurrencyUSD } from '../lib/governanceMetrics';
+import { formatCurrencyCOP } from '../lib/governanceMetrics';
 import type {
   Initiative,
   InitiativePriority,
@@ -110,8 +110,11 @@ export function PortfolioView({
           <span>
             Inversión estimada:{' '}
             <strong className="font-mono tabular-nums text-slate-900 dark:text-slate-100">
-              {formatCurrencyUSD(totalCost)} USD
-            </strong>
+              {formatCurrencyCOP(totalCost)} COP
+            </strong>{' '}
+            <span className="text-[11px] text-slate-400 dark:text-slate-500">
+              (TRM $4.200)
+            </span>
           </span>
           <span aria-hidden="true">·</span>
           <span>
@@ -124,14 +127,14 @@ export function PortfolioView({
       </div>
 
       {/* Controles de vista y filtros */}
-      <div className="flex flex-col gap-3 rounded-md border border-slate-200 border-t-[3px] border-t-[#0052CC] bg-white p-4 shadow-xs dark:border-slate-800 dark:border-t-[#0052CC] dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
-        <div className="inline-flex items-center gap-1 rounded bg-slate-100 p-1 dark:bg-slate-800/80 self-start">
+      <div className="flex flex-col gap-3 rounded-lg border border-slate-200/90 bg-white p-4 dark:border-slate-800 dark:bg-slate-900 sm:flex-row sm:items-center sm:justify-between">
+        <div className="inline-flex items-center gap-1 rounded-md bg-slate-100 p-1 dark:bg-slate-800/80 self-start">
           <button
             type="button"
             onClick={() => setViewMode('kanban')}
-            className={`inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
               viewMode === 'kanban'
-                ? 'bg-[#0052CC] text-white'
+                ? 'bg-[#2E93FA] text-white'
                 : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
             }`}
           >
@@ -141,9 +144,9 @@ export function PortfolioView({
           <button
             type="button"
             onClick={() => setViewMode('table')}
-            className={`inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
               viewMode === 'table'
-                ? 'bg-[#0052CC] text-white'
+                ? 'bg-[#2E93FA] text-white'
                 : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
             }`}
           >
@@ -153,9 +156,9 @@ export function PortfolioView({
           <button
             type="button"
             onClick={() => setViewMode('heatmap')}
-            className={`inline-flex items-center gap-1.5 rounded px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-medium transition-colors whitespace-nowrap shrink-0 ${
               viewMode === 'heatmap'
-                ? 'bg-[#0052CC] text-white'
+                ? 'bg-[#2E93FA] text-white'
                 : 'text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white'
             }`}
           >
@@ -208,7 +211,7 @@ export function PortfolioView({
                       {status}
                     </h2>
                     <span className="font-mono text-xs text-slate-500 dark:text-slate-400 tabular-nums">
-                      {formatCurrencyUSD(columnCost)}
+                      {formatCurrencyCOP(columnCost)} COP
                     </span>
                   </div>
                   <span className="font-mono text-xs font-semibold text-slate-700 dark:text-slate-300 tabular-nums">
@@ -247,7 +250,7 @@ export function PortfolioView({
                         </p>
 
                         <div className="mt-3 flex items-center justify-between border-t border-slate-100 pt-2.5 text-[11px] font-mono tabular-nums text-slate-600 dark:border-slate-800 dark:text-slate-300">
-                          <span>{formatCurrencyUSD(item.estimated_cost_usd)}</span>
+                          <span>{formatCurrencyCOP(item.estimated_cost_usd)} COP</span>
                           <span>{item.duration_months} meses</span>
                         </div>
 
@@ -315,7 +318,7 @@ export function PortfolioView({
                       {item.related_objective}
                     </td>
                     <td className="px-4 py-3.5 align-top text-right font-mono text-xs font-medium text-slate-900 dark:text-slate-100 tabular-nums whitespace-nowrap">
-                      {formatCurrencyUSD(item.estimated_cost_usd)}
+                      {formatCurrencyCOP(item.estimated_cost_usd)} COP
                     </td>
                     <td className="px-4 py-3.5 align-top text-right font-mono text-xs text-slate-600 dark:text-slate-300 tabular-nums whitespace-nowrap">
                       {item.duration_months} meses
@@ -489,7 +492,7 @@ export function PortfolioView({
                   Costo estimado
                 </span>
                 <span className="font-mono font-semibold text-slate-900 dark:text-slate-100">
-                  {formatCurrencyUSD(activeSelected.estimated_cost_usd)} USD
+                  {formatCurrencyCOP(activeSelected.estimated_cost_usd)} COP
                 </span>
               </div>
               <div className="flex justify-between">
